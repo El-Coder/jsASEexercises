@@ -1,38 +1,51 @@
+const path = require('path');
 const ASEdata = require('./model');
 
-exports.test = function (req, res) {
-    res.send('Test controller Entry.');
-};
-/*
 exports.index = function (req, res) {
-    res.send(fs.)
+    res.sendFile(path.join(__dirname + '/index.html'));
 };
 
-exports.get_data = function (req, res) {
-
-};
-*/
-//Update this to handle JSON
-exports.add_entry = function (req, res) {
+exports.add_entry = function (req, res, next) {
     let ASEentry = new ASEdata(
         {
             name: req.body.name,
-            message: req.body.message
+            message: req.body.message,
+            oldMessage: req.body.oldMessage
         }
     );
-    console.log(ASEentry)
     ASEentry.save(function (err) {
-        if (err) {
-            //Update this return the error in a JSON object
-            return next(err);
-        }
-        res.send(ASEentry)
+        if (err) return next(err);
+        res.send(ASEentry);
     })
 };
 
-exports.get_data = function (req, res) {
-    ASEdata.findById(req.params.id, function (err, product) {
+exports.get_entry = (req, res, next) => {
+    ASEdata.findOne({ name: req.params.name }, function (err, entry) {
         if (err) return next(err);
-        res.send(product);
+        res.send(entry);
+    })
+};
+
+exports.get_data = function (req, res, next) {
+    ASEdata.find(function (err, entry) {
+        if (err) return next(err);
+        res.send(entry);
+    })
+};
+
+exports.update_entry = function (req, res, next) {
+    console.log(req.params.name);
+    console.log(req.body);
+    ASEdata.findOneAndUpdate({name: req.params.name}, {$set: req.body}, {new: true}, (err, entry) => {
+        console.log(entry);
+        if (err) return next(err);
+        res.send(entry);
+    });
+};
+
+exports.delete_entry = function (req, res, next) {
+    ASEdata.findOneAndRemove({name: req.params.name}, function (err) {
+        if (err) return next(err);
+        res.send({ message: 'Delete Received.'});
     })
 };

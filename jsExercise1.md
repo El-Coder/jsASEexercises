@@ -61,7 +61,11 @@ request('http://localhost:8888/data', (err, res, body) => {
 $ node 1b.js
 ```
 
-That seems...a little more reasonable. Notice we can parse the whole body in our callback without putting it back together in chunks. Consider the following (flawed) example:
+That seems...a little more reasonable. Notice we can parse the whole body in our callback without putting it back together in chunks. 
+
+## Async Aside
+
+Consider the following (flawed) example:
 
 ```javascript
 const request = require('request');
@@ -76,6 +80,76 @@ request('http://localhost:8888/data', (err, res, body) => {
 
 console.log("Post-Request.");
 ```
+
+```bash
+$ node 1c.js
+```
+
+Study the logging output (specifically the order of the messages). Why did that happen? What if we needed to use some JSON value from the response body later in our code?
+
+### Callback Hell
+
+If we needed to pass returned function values to other functions our code can quickly nest into callback hell.
+
+![callback hell](https://pbs.twimg.com/media/CbHuC7nWIAUOiOS.png:large)
+
+As you learned from the code academy lessons, there is a cleaner way of dealing with this problem in JavaScript.
+
+### Promises
+
+A promise is an object. It represents the eventual completion of an asynchronous operation. A promise is created with the Promise constructor -- or returned natively from a package that's been written to do so. The constructor accepts one argument, a function which takes ``resolve`` & ``reject`` as parameters. Once your data has been returned, you can call ``resolve``, passing in the data you want to work with later. If there is an error, call ``reject`` instead.
+
+Using the ``request`` library we are alrady familiar with, we can construct an example Promise.
+
+```javascript
+const request = require('request');
+
+function exAsyncRequest() {
+    return new Promise(function(resolve, reject){
+        return request('http://localhost:8888/data', (err, res, body) => {
+         if (err) return reject(err);
+            resolve(JSON.parse(body));
+        });
+    });
+}
+
+exAsyncRequest().then(function(val) {
+    //Let's just log the first member of the array
+    console.log(val[0]);
+}).catch(function(err) {
+    console.err(err);
+});
+```
+
+```bash
+$ node 1d.js
+```
+
+We've defined a function that makes our HTTP request. We can then call that function (which returns a promise) followed by ``.then`` to perform some action on the eventual returned value of the promise. You can use ``.catch`` to catch a ``reject()``. Make sense?
+
+It shouldn't be suprising that some enterprising develeopers have 'promisified' requests long ago. Here's an example.
+
+```javascript
+var rp = require('request-promise');
+
+rp('http://localhost:8888/data')
+    .then(function (val) {
+        console.log(val[0]);
+    })
+    .catch(function (err) {
+        console.err(err);
+    });
+```
+
+```bash
+$ 1e.js
+```
+
+That's...pretty reasonable. Let move on to [Exercise 2](https://github.com/kreynoldsf5/jsASEexercise/jsExercise2.md)
+
+
+
+
 
 
 

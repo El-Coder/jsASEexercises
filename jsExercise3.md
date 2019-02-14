@@ -66,7 +66,7 @@ rp(uri)
 }).then(function(response) {
     console.log(JSON.parse(response));
 }).catch(function (err) {
-    console.log(err);
+    console.error(err);
 });
 ```
       

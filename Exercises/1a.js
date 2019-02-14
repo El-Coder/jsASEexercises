@@ -1,6 +1,6 @@
 const http = require('http');
 
-http.get( {hostname: 'localhost', port: 8888, path: '/data' }, (res) => {
+http.get( {hostname: 'ec2-54-191-220-106.us-west-2.compute.amazonaws.com', port: 8080, path: '/data' }, (res) => {
   //instantiate a blank string for our response data
   let data = '';
   // Add each chunk to the string
@@ -13,5 +13,5 @@ http.get( {hostname: 'localhost', port: 8888, path: '/data' }, (res) => {
   });
 
 }).on("error", (err) => {
-  console.log("Error: " + err.message);
+  console.error("Error: " + err.message);
 });

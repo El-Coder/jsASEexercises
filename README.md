@@ -14,7 +14,7 @@ Verify that you've installed [node.js](https://nodejs.org/en/download/) so that 
 
 The tasks in these exercises will follow a similiar pattern as the python exercises -- making HTTP requests (GETs and POSTs) and processing the data returned. The main theme of the exercises will be getting acquainted with the asynchronous nature of JavaScript. We'll cover modern [ES6](https://www.w3schools.com/js/js_es6.asp) native concepts designed to make working with the asychronous nature of the language more pleasant. 
 
-Yet again I've written another small web server that uses the same MongoDB backend as the previous Python exercises. The [app](./WebServer/app.py) is again packaged in a Docker container and can be easily built/run on any docker host if you want to experiment with it later. 
+Yet again I've written another small web server that uses the same MongoDB backend as the previous Python exercises. The [app](./WebServer/app.py) is again packaged in a Docker container and can be easily built/run on any docker host if you want to experiment with it later. This time its far more featured. Its designed in terms of _very_ basic [MVC framework](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) concepts and the API fully (yet barely) implements [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) concepts.
 
 The webserver will respond in accordance to this table:
 
@@ -27,7 +27,7 @@ The webserver will respond in accordance to this table:
 | PUT    | /data/{name} | update record        |
 | DELETE | /data/{name} | delete record        |
 
-The webserver is listening on port 8080 at the same/previous URI from the previous exercise -- [http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com](http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com). THe original Python webserver is running on port 80 on the same host.
+The webserver is listening on port *8080* at the same/previous URI from the previous exercise -- [http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com](http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com). THe original Python webserver is running on port 80 on the same host.
 
 ### Exercise Overviews
 

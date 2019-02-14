@@ -11,12 +11,10 @@ $ cd ~/Repos/jsASEexercises/Exercises/
 
 This is a built in library -- but its quite low level. Here is a small script to make a request. 
 
-http.get('http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data', (res) => {
-
 ```javascript
 const http = require('http');
 
-http.get( {hostname: 'localhost', port: 8888, path: '/data' }, (res) => {
+http.get( {hostname: 'ec2-54-191-220-106.us-west-2.compute.amazonaws.com', port: 8080, path: '/data' }, (res) => {
   //instantiate a blank string for our response data
   let data = '';
   // Add each chunk to the string
@@ -29,18 +27,18 @@ http.get( {hostname: 'localhost', port: 8888, path: '/data' }, (res) => {
   });
 
 }).on("error", (err) => {
-  console.log("Error: " + err.message);
+  console.error("Error: " + err.message);
 });
 ```
 
-Run the script from the ```Exercises``` directory.
+Run the script from the ``Exercises`` directory.
 ```bash
 $ node 1a.js
 ```
 
 ``http.get()``'s first argument can be a URL or an ``options`` object. We are using the latter in this example. The second argument is a callback function. The response, ``res``, that is being passed to the callback function is a stream object.  
 
-That seems....like it could be a pain (we have to handle the http chunking ourselves?!?!). Notice how we had to use a callback function to build the response ``data`` chunk by chunk from the streamed object of ``res``. Ugh. Let's do the same thing with a package built on top of that module. The ``request`` package is much like the Python library we used in the last set of exercises.
+That seems....less than ideal (we have to handle the http chunking ourselves?!?!). Notice how we had to use a callback function to build the response ``data`` chunk by chunk from the streamed object of ``res``. Ugh. Let's do the same thing with a package built on top of that module. The ``request`` package is much like the Python library we used in the last set of exercises.
 
 ## NPM Requests Library
 
@@ -51,7 +49,7 @@ Now let's run a small script to return the same page as in the previous example.
 ```javascript
 const request = require('request');
 
-request('http://localhost:8888/data', (err, res, body) => {
+request('http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data', (err, res, body) => {
   if (err) { return console.log(err); }
   console.log(JSON.parse(body));
 });
@@ -61,7 +59,7 @@ request('http://localhost:8888/data', (err, res, body) => {
 $ node 1b.js
 ```
 
-That seems...a little more reasonable. Notice we can parse the whole body in our callback without putting it back together in chunks. 
+That seems...a little more reasonable. Once again we are passing a callback function to the method - this time with paramters for error, a response object (all headers, response status, etc.), and the HTTP response body. Notice we can parse the whole body in our callback without putting it back together in chunks. 
 
 ## Async Aside
 
@@ -97,7 +95,7 @@ As you learned from the code academy lessons, there is a cleaner way of dealing 
 
 ### Promises
 
-A promise is an object. It represents the eventual completion of an asynchronous operation. A promise is created with the Promise constructor -- or returned natively from a package that's been written to do so. The constructor accepts one argument, a function which takes ``resolve`` & ``reject`` as parameters. Once your data has been returned, you can call ``resolve``, passing in the data you want to work with later. If there is an error, call ``reject`` instead.
+A promise is an object that represents the eventual completion of an asynchronous operation. A promise is created with the Promise constructor -- or returned natively from a package that's been written to do so. The constructor accepts one argument, a function which takes ``resolve`` & ``reject`` as parameters. Once your data has been returned, you can call ``resolve``, passing in the data you want to work with later. If there is an error, call ``reject`` instead.
 
 Using the ``request`` library we are alrady familiar with, we can construct an example Promise.
 
@@ -106,7 +104,7 @@ const request = require('request');
 
 function exAsyncRequest() {
     return new Promise(function(resolve, reject){
-        return request('http://localhost:8888/data', (err, res, body) => {
+        return request('http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/kevin', (err, res, body) => {
          if (err) return reject(err);
             resolve(JSON.parse(body));
         });
@@ -127,17 +125,17 @@ $ node 1d.js
 
 We've defined a function that makes our HTTP request. We can then call that function (which returns a promise) followed by ``.then`` to perform some action on the eventual returned value of the promise. You can use ``.catch`` to catch a ``reject()``. Make sense?
 
-It shouldn't be suprising that some enterprising develeopers have 'promisified' requests long ago. Here's an example.
+It shouldn't be suprising that some enterprising develeopers have 'promisified' ``request`` long ago. Here's an example.
 
 ```javascript
 const rp = require('request-promise');
 
-rp('http://localhost:8888/data')
+rp('http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/kevin')
     .then(function (val) {
         console.log(val[0]);
     })
     .catch(function (err) {
-        console.err(err);
+        console.error(err);
     });
 ```
 
@@ -145,7 +143,7 @@ rp('http://localhost:8888/data')
 $ 1e.js
 ```
 
-That's...pretty reasonable. Let move on to [Exercise 2](https://github.com/kreynoldsf5/jsASEexercise/jsExercise2.md)
+That's...pretty reasonable. Let move on to [Exercise 2](./jsExercise2.md)
 
 
 

@@ -20,7 +20,7 @@ app.use(function(error, req, res, next) {
     res.json({ message: error.message });
   });
 
-let port = 8888;
+let port = 8080;
 
 app.listen(port, () => {
     console.log('Webserver running on port ' + port);

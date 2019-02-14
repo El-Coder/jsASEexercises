@@ -1,5 +1,3 @@
-# jsASEexercises
-
 # ASE JavaScript Exercises
 
 JavaScript is the dominant language of the Web. Clientside, its responsible for generating much of the rich dynamic content being displayed in your browser. Serverside javascript, typically through the use of node.js, allows developers to work in a common language on both ends of the stack.   

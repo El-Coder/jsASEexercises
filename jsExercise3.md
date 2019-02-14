@@ -1,6 +1,6 @@
 # Exercise 3
 
-_Goal: Make a GET request to the old Python web server and retrieve your old data. Make a GET request to this lesson's web server and retrieve today's data. Take the message from the old data and ``update`` today's data (using the ``PUT`` method) with a JSON property of ``oldMessage``._
+_Goal: Make a GET request to the web server and retrieve your previous data. Take the ``message`` from the previous data and ``update`` your new data (using the ``PUT`` method) with a JSON property of ``oldMessage``._
 
 Sound easy, right? Use ``Promises`` to pass response data to your later requests. 
 
@@ -9,8 +9,8 @@ Sound easy, right? Use ``Promises`` to pass response data to your later requests
 Here are the steps we need to take;
 * GET request to the web server, retrieve your current data
 * Create a payload where the current message is now the ``oldMessage``. Add a new message as ``message``.
-* PUT request to the web server to update your data with the new payload (which will include ``name``, ``message``, and ``oldMessage``.). Log this response.
-* Another GET request to verify our data has been properly updated. Log this response.
+* PUT request to the web server to update your data with the new payload (which will include ``name``, ``message``, and ``oldMessage``).
+* Another GET request to verify our data has been properly updated. 
 
 The ``PUT`` request needs to happen last and it needs the data from the first ``GET`` request to do its work.
 
@@ -37,7 +37,7 @@ request(GET current data)
 })
 ```
 
-Feel free to come up with your own answer using a different approach. There is rarely one right answer to any problem being solved in code.
+Feel free to come up with your own answer using a different approach. There is rarely one right answer to any problem being solved in code. Write your script and test it.
 
 <details><summary>Solution</summary>
 <p>
@@ -49,18 +49,19 @@ const rp = require('request-promise');
 const uri = 'http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/kevin'
 
 rp(uri)
-.then(function(oldBody) {
+.then(function(body) {
+    let oldBody = JSON.parse(body);
     var options = {
         method: 'PUT',
         uri: uri,
         body: {
             name: oldBody.name,
-            oldMessage: oldBody.message,
-            message: "Squeaky Clean New Message."
+            message: "Squeaky Clean New Message.",
+            oldMessage: oldBody.message
         },
         json: true
     };
-    rp(options);
+    return rp(options);
 }).then(function() {
     return rp(uri);
 }).then(function(response) {

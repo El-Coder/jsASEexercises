@@ -10,9 +10,9 @@ Verify that you've installed [node.js](https://nodejs.org/en/download/) so that 
 
 ## Exercises
 
-The tasks in these exercises will follow a similiar pattern as the python exercises -- making HTTP requests (GETs and POSTs) and processing the data returned. The main theme of the exercises will be getting acquainted with the asynchronous nature of JavaScript. We'll cover modern [ES6](https://www.w3schools.com/js/js_es6.asp) native concepts designed to make working with the asychronous nature of the language more pleasant. 
+The tasks in these exercises will follow a similiar pattern as the python exercises -- making HTTP requests and processing the data returned. The main theme of the exercises will be getting acquainted with the asynchronous nature of JavaScript. We'll cover modern [ES6](https://www.w3schools.com/js/js_es6.asp) native concepts designed to make working with the asychronous nature of the language more pleasant. 
 
-Yet again I've written another small web server that uses the same MongoDB backend as the previous Python exercises. The [app](./WebServer/app.py) is again packaged in a Docker container and can be easily built/run on any docker host if you want to experiment with it later. This time its far more featured. Its designed in terms of _very_ basic [MVC framework](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) concepts and the API fully (yet barely) implements [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) concepts.
+Yet again I've written another small web application that uses the same MongoDB backend as the previous Python exercises. The [app](./WebServer/app.py) is again packaged in a Docker container and can be easily built/run on any docker host if you want to experiment with it later. This time the app far more featured. Its designed in terms of _very_ basic [MVC framework](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) concepts and the API fully (yet barely) implements [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) concepts.
 
 The webserver will respond in accordance to this table:
 
@@ -29,11 +29,11 @@ The webserver is listening on port *8080* at the same/previous URI from the prev
 
 ### Exercise Overviews
 
-For each exercise, I have provided a solution based on running node.js interactively. Please package your answers in scripts so they can be easily shared, placed in a SCM repository, etc. If you clone this repository and place your answer scripts in the [Exercises](./Exercises) directory common packages/dependencies will already be present (they are provided in the [node_modules](./Exercises/node_modules) directory).
+For each exercise, I have provided a solutions in the [Exercises](./Exercises) folder of the repository. When you clone or download this repository place your answer scripts in the [Exercises](./Exercises) directory and common packages/dependencies will already be present (they are provided in the [node_modules](./Exercises/node_modules) directory).
 
 #### [Exercise 1](./jsExercise1.md)
 
-Craft a GET request to / and log (``console.log()``) the response to std_out. We'll walk through multiple ways of performing this task based on built-in libraries and a couple packages.
+Craft a GET request to / and log (``console.log()``) the response to std_out. We'll walk through multiple ways of performing this task based on built-in libraries and a couple packages. We'll walk through this exercise together.
 
 _20min_
 
@@ -45,7 +45,7 @@ _10min_
 
 #### [Exercise 3](./jsExercise3.md)
 
-Make a GET request to last weeks web server and return the ```{ message: "super secret message." }``` you left there last week. Send another GET request to return your data from [Exercise 2](./jsExercise2). Combine those bits of data into a ``PUT`` request to update your data added a new JSON parameter. 
+Make a GET request to the web server and return the ```{ message: "super secret message." }``` you left there in a previous exercise. Combine those bits of data into a ``PUT`` request to update your data and add a new JSON parameter. 
 
 _15min_
 

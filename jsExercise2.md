@@ -101,7 +101,7 @@ rp(options)
 Please ``DELETE`` your own entry. You should receive a JSON reponse that your request was received:
 
 ```json
-{ 'message': 'Delete Received.'}
+{ "message": "Delete Received."}
 ```
 
 Verify your entry was deleted with a GET request to your endpoint or a GET request to ``/data``. 

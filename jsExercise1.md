@@ -143,7 +143,7 @@ rp('http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/kevin')
 $ 1e.js
 ```
 
-That's...pretty reasonable. Let move on to [Exercise 2](./jsExercise2.md)
+That's...pretty reasonable. Let move on to [Exercise 2](./jsExercise2.md).
 
 
 

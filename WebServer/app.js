@@ -6,7 +6,7 @@ const app = express();
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://root:ASEexample@mongo-server/ASEexample", { useNewUrlParser: false });
+mongoose.connect("mongodb://root:ASEexample@mongo-server", { useNewUrlParser: false });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

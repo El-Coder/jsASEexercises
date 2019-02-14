@@ -36,8 +36,15 @@ exports.get_data = function (req, res, next) {
 exports.update_entry = function (req, res, next) {
     console.log(req.params.name);
     console.log(req.body);
+    /*
     ASEdata.findOneAndUpdate({name: req.params.name}, {$set: req.body}, {new: true}, (err, entry) => {
         console.log(entry);
+        if (err) return next(err);
+        res.send(entry);
+    });
+    */
+    ASEdata.findOneAndUpdate({name: req.params.name}, {$set: req.body}, {new: true})
+    .then(function(err, entry) {
         if (err) return next(err);
         res.send(entry);
     });

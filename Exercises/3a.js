@@ -14,7 +14,7 @@ rp(uri)
         },
         json: true
     };
-    rp(options);
+    return rp(options);
 }).then(function() {
     return rp(uri);
 }).then(function(response) {

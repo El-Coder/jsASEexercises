@@ -9,8 +9,8 @@ Sound easy, right? Use ``Promises`` to pass response data to your later requests
 Here are the steps we need to take;
 * GET request to the web server, retrieve your current data
 * Create a payload where the current message is now the ``oldMessage``. Add a new message as ``message``.
-* PUT request to the web server to update your data with the new payload (which will include ``name``, ``message``, and ``oldMessage``.)
-* Another GET request to verify our data has been properly updated.
+* PUT request to the web server to update your data with the new payload (which will include ``name``, ``message``, and ``oldMessage``.). Log this response.
+* Another GET request to verify our data has been properly updated. Log this response.
 
 The ``PUT`` request needs to happen last and it needs the data from the first ``GET`` request to do its work.
 

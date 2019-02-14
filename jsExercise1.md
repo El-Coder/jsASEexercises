@@ -1,4 +1,4 @@
-# Exercise 1 -- Making an HTTP request
+# Exercise 1 - Making an HTTP request
 
 Sounds easy, right? Your browser is likely making 1000s of HTTP requests per day from a javascript library. Like many languages, there are many ways to skin this cat. Lets look at a couple of different ways. For the examples in this exercise, I've provided the scripts under the [Exercises](https://github.com/kreynoldsf5/jsASEexercises) folder. Please clone this repo locally so you can walk through the exercises. Once downloaded, change to the exercises directory so that package dependencies should be resolved.
 
@@ -130,7 +130,7 @@ We've defined a function that makes our HTTP request. We can then call that func
 It shouldn't be suprising that some enterprising develeopers have 'promisified' requests long ago. Here's an example.
 
 ```javascript
-var rp = require('request-promise');
+const rp = require('request-promise');
 
 rp('http://localhost:8888/data')
     .then(function (val) {

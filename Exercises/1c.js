@@ -1,6 +1,5 @@
 const request = require('request');
 
-
 console.log("Pre-Request.");
 
 request('http://localhost:8888/data', (err, res, body) => {

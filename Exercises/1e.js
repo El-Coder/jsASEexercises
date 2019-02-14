@@ -1,4 +1,4 @@
-var rp = require('request-promise');
+const rp = require('request-promise');
 
 rp('http://localhost:8888/data')
     .then(function (val) {

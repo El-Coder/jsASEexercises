@@ -4,14 +4,13 @@ const uri = 'http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data
 rp(uri)
 .then(function(body) {
     let oldBody = JSON.parse(body);
-    console.log(oldBody.message)
     var options = {
         method: 'PUT',
         uri: uri,
         body: {
             name: oldBody.name,
-            oldMessage: oldBody.message,
-            message: "Squeaky Clean New Message."
+            message: "Squeaky Clean New Message.",
+            oldMessage: oldBody.message
         },
         json: true
     };

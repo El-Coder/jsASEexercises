@@ -1,8 +1,8 @@
 var request = require('request')
 
 var postData = {
-  name: 'Sample2a',
-  message: 'just a sample.'
+  name: 'Eliezer',
+  message: 'just a message'
 }
 
 var options = {

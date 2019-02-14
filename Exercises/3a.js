@@ -1,5 +1,5 @@
 const rp = require('request-promise');
-const uri = 'http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/kevin'
+const uri = 'http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/Eliezer'
 
 rp(uri)
 .then(function(body) {
@@ -9,7 +9,7 @@ rp(uri)
         uri: uri,
         body: {
             name: oldBody.name,
-            message: "Squeaky Clean New Message.",
+            message: "Brand New Message.",
             oldMessage: oldBody.message
         },
         json: true

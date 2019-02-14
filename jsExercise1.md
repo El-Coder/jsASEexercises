@@ -1,6 +1,6 @@
 # Exercise 1 - Making an HTTP request
 
-Sounds easy, right? Your browser is likely making 1000s of HTTP requests per day from a javascript library. Like many languages, there are many ways to skin this cat. Lets look at a couple of different ways. For the examples in this exercise, I've provided the scripts under the [Exercises](https://github.com/kreynoldsf5/jsASEexercises) folder. Please clone this repo locally so you can walk through the exercises. Once downloaded, change to the exercises directory so that package dependencies should be resolved.
+Sounds easy, right? Your browser is likely making 1000s of HTTP requests per day from a javascript library. Like most languages, there are many ways to skin this cat. Let's explore a couple of different ways. For the examples in this exercise, I've provided the scripts under the [Exercises](./Exercises) folder of this repository. Please download or clone this repo locally so you can walk through the exercises. Once downloaded, change your working directrory to the ``Exercises`` directory so that NPM package dependencies will be resolved.
 
 ```bash
 $ cd ~/Repos/jsASEexercises/Exercises/
@@ -9,7 +9,7 @@ $ cd ~/Repos/jsASEexercises/Exercises/
 
 ## JavaScript HTTP/HTTPS libraries
 
-This is a built in library -- but its quite low level. Here is a small script to make a request. 
+This is a built in library -- but its quite low level. Here is a small script to make an HTTP request. 
 
 ```javascript
 const http = require('http');

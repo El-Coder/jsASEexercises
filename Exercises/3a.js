@@ -2,7 +2,9 @@ const rp = require('request-promise');
 const uri = 'http://ec2-54-191-220-106.us-west-2.compute.amazonaws.com:8080/data/kevin'
 
 rp(uri)
-.then(function(oldBody) {
+.then(function(body) {
+    let oldBody = JSON.parse(body);
+    console.log(oldBody.message)
     var options = {
         method: 'PUT',
         uri: uri,
